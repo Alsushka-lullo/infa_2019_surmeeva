@@ -7,21 +7,6 @@ canvasSize(570, 830)
 penSize(0)
 
 
-"""
-def oval(x1, y1, x2, y2, color):  #don't forget to delete
-    x_cen = (x1 + x2) / 2
-    y_cen = (y1 + y2) / 2
-    a = (x2 - x1) / 2 
-    b = (y2 - y1) / 2
-    x_pos = 0
-    y_pos = 0
-    moveTo(x2, y_cen)
-    brushColor(color)
-    for i in range(1001):
-        x_pos = x_cen + a * math.cos(2 * math.pi / 1000 * i)
-        y_pos = y_cen + b * math.sin(2 * math.pi / 1000 * i)
-        lineTo(x_pos, y_pos)
-"""
 
 def ellipse(x1, y1, x2, y2, color): #drawingColoredEllipses
     brushColor(color)
