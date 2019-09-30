@@ -1,4 +1,4 @@
-from graph import *
+from infa_2019_surmeeva.lab3.graph import *
 from math import *
 
 penSize(2)

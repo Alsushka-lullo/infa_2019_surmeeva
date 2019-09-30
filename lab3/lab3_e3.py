@@ -1,5 +1,5 @@
-from graph import *
 from math import *
+from infa_2019_surmeeva.lab3.graph import *
 
 penSize(2)
 canvasSize(1200,800) # основа

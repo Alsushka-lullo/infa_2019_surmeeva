@@ -1,6 +1,7 @@
 import math
 from graph import*
 
+from infa_2019_surmeeva.lab3.graph import *
 
 windowSize(570, 830)
 canvasSize(570, 830)
