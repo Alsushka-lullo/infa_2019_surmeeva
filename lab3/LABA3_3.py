@@ -1,4 +1,9 @@
-from infa_2019_surmeeva.lab3.graph import *
+from infa_2019_surmeeva.lab3.graph import windowSize, canvasSize
+from infa_2019_surmeeva.lab3.graph import penSize, penColor, brushColor
+from infa_2019_surmeeva.lab3.graph import circle, rectangle
+from infa_2019_surmeeva.lab3.graph import changeCoords, run
+
+
 
 windowSize(560, 830)  # general settings
 canvasSize(560, 830)
@@ -36,14 +41,14 @@ def rectangle_col(x1, y1, x2, y2, color):  # making colored rectangle
 rectangle_col(0, 0, 570, 525, "black")  # general background
 rectangle_col(0, 535, 570, 830, "#5F726A")
 
-rectangle_col(210, 180, 558, 556, "#C5C7C9")  # backround of the right half
+rectangle_col(210, 180, 558, 556, "#C5C7C9")  # background of the right half
 rectangle_col(514, 198, 557, 556, "#90A6A7")
 rectangle_col(421, 213, 501, 557, "#82A68E")
 ellipse(330, 216, 643, 307, "#BCC4BA")
 rectangle_col(449, 265, 537, 608, "#C5D0C3")
 rectangle_col(263, 284, 347, 616, "#87A69B")
 
-penColor(255, 255, 255)  # backround of the left half
+penColor(255, 255, 255)  # background of the left half
 penSize(6)
 rectangle_col(0, 195, 314, 572, "#C5C7C9")
 penSize(0)
