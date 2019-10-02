@@ -144,7 +144,7 @@ def canvasPos(x=-1, y=-1):
         return tuple(_Cpos)
 
 
-def canvasSize(w=-1, h=-1):
+def canvasSize(w: object = -1, h: object = -1) -> object:
     global _C, _Cw, _Ch
     if w > 0:
         _C.config(width=w, height=h)
