@@ -1,6 +1,11 @@
-from math import *
+from math import sin, cos, pi
 
-from infa_2019_surmeeva.lab3.graph import *
+from infa_2019_surmeeva.lab3.graph import canvasSize
+from infa_2019_surmeeva.lab3.graph import penSize, brushColor, penColor
+from infa_2019_surmeeva.lab3.graph import circle, rectangle, polygon
+from infa_2019_surmeeva.lab3.graph import run
+
+
 
 penSize(2)
 canvasSize(1200, 800)  # основа
