@@ -4,7 +4,6 @@ from infa_2019_surmeeva.lab3.graph import circle, rectangle
 from infa_2019_surmeeva.lab3.graph import changeCoords, run
 
 
-
 windowSize(560, 830)  # general settings
 canvasSize(560, 830)
 penSize(0)
@@ -13,7 +12,6 @@ car = [(33, 699, 60, 705, "black"), (48, 669, 283, 712, "#65C2DD"),
        (90, 644, 208, 670, "#65C2DD"), (101, 648, 136, 669, "#BCE0F0"),
        (157, 648, 192, 669, "#BCE0F0"), (67, 691, 112, 727, "black"),
        (223, 691, 268, 727, "black")]  # example of the 1st car
-
 
 def changes(scale, x_new, y_new, reflect):  # scaling and reflection of the cars
     time_r = []
@@ -57,7 +55,6 @@ rectangle_col(23, 228, 102, 575, "#82A68E")
 rectangle_col(0, 281, 72, 622, "#C5D0C3")
 rectangle_col(209, 210, 296, 572, "#DFE5DC")
 rectangle_col(175, 298, 257, 630, "#87A69B")
-
 
 def draw_car(car_arr):  # drawing of the car
     ellipse(car_arr[0][0], car_arr[0][1], car_arr[0][2], car_arr[0][3], car_arr[0][4])

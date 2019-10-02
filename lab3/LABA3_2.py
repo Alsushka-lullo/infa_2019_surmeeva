@@ -8,7 +8,6 @@ windowSize(570, 830)
 canvasSize(570, 830)
 penSize(0)
 
-
 def ellipse(x1, y1, x2, y2, color):         # drawingColoredEllipses
     brushColor(color)
     _ellipse = circle(10, 10, 10)
@@ -19,7 +18,6 @@ def ellipse(x1, y1, x2, y2, color):         # drawingColoredEllipses
 def rectangle_col(x1, y1, x2, y2, color):   # drawingColoredRectangles
     brushColor(color)
     rectangle(x1, y1, x2, y2)
-
 
 rectangle_col(0, 0, 570, 525, "#C5C7C9")    # housesAndClouds
 rectangle_col(0, 535, 570, 830, "#5F726A")
