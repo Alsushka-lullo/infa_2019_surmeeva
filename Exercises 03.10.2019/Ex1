@@ -1,0 +1,18 @@
+prime_numbers = [2]
+
+
+def add_number(list_chan):
+    for i in range(2, 1000):
+        temp = 0
+        for k in list_chan:
+            if i % k == 0:
+                break
+            else:
+                temp += 1
+        if temp == len(list_chan):
+            list_chan.append(i)
+
+    return(list_chan)
+
+
+print(add_number(prime_numbers))
