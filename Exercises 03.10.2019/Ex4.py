@@ -4,7 +4,7 @@ money = 40
 
 
 def possibility(dct_shop, pay):  # назвение не очень удачное, но ок
-    for key in dct_products: # нетнетнет, подумай что не так
+    for key in dct_products:  # нетнетнет, подумай что не так
         if dct_shop[key] <= pay:
             print(key)
 
@@ -12,7 +12,6 @@ def possibility(dct_shop, pay):  # назвение не очень удачно
 possibility(dct_products, money)
 
 dct2 = {'a': 10, 'b': 20, 'c': 50}
-possibility(dct2, 30) # на этой строке программа вообще падает. Так не должно быть
+possibility(dct2, 30)  # на этой строке программа вообще падает. Так не должно быть
 
 # 3/10 (не решено)
-
