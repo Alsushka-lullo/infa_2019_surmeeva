@@ -6,3 +6,5 @@ def without_copies(list1):
 
 
 print(without_copies(list_dub))
+
+# 10/10
