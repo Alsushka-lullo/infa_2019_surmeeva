@@ -1,4 +1,3 @@
-import random
 import time
 from tkinter import *
 from random import randrange as rnd, choice
