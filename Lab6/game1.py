@@ -2,7 +2,7 @@ import time
 from tkinter import *
 from random import randrange as rnd, choice
 
-width_of_canvas = 800
+width_of_canvas = 800  # creates window of the game
 height_of_canvas = 600
 number_of_balls = 8
 colors = ['red', 'orange', 'yellow', 'green', 'blue']
@@ -14,37 +14,31 @@ canvas = Canvas(root, bg='white')
 canvas.pack(fill=BOTH, expand=1)
 
 
-class Score:
+class Score:  # writes scores and times in file, delete figures on the canvas
     def __init__(self, root_score, canvas_score, game_of_players):
         self.sum_points = 0
-        self.sum_faults = 0
         self.canvas = canvas_score
         self.game_score = game_of_players
         self.root = root_score
         self.canvas.bind("Button-1", self.click)
-        self.root.protocol('WM_DELETE_WINDOW', game_of_players.on_closing)
 
     def click(self, event):
         for ball in self.game_score.list_of_balls:
-            if (event.x - ball.center_coordinates()[0]) ** 2 + \
-                    (event.y - ball.center_coordinates()[1]) ** 2 <= ball.get_radius() ** 2:
+            if ((event.x - ball.center_coordinates()[0]) ** 2 + (event.y - ball.center_coordinates()[1]) ** 2
+                <= ball.get_radius() ** 2 and isinstance(ball, Ball)) or \
+                    (abs((event.x - ball.center_coordinates()[0])) <= ball.get_radius() and
+                     abs((event.y - ball.center_coordinates()[1])) <= ball.get_radius() and
+                     isinstance(ball, MalevichSquare)):
                 self.game_score.list_of_balls.remove(ball)
                 ball.kill_the_ball()
-                self.sum_points += 1
-            else:
-                self.sum_faults += 1
+                self.sum_points += 1 if isinstance(ball, Ball) else 5
 
 
-class GameWithBalls:
+class GameWithBalls:  # creates game, begins and ends it, draws figures on the canvas
     def __init__(self, g_root, g_canvas):
         self.list_of_balls = []
         self.root = g_root
         self.our_canv = g_canvas
-        '''self.root = Tk()
-        self.root.title("Game")
-        self.root.geometry(str(width_of_canvas) + 'x' + str(hight_of_canvas))
-        self.our_canv = Canvas(self.root, bg='white')
-        self.our_canv.pack(fill=BOTH, expand=1)'''
         self.score_of_player = Score(root, self.our_canv, self)
         self.time_of_beginning = 0
         self.our_canv.bind('<Button-1>', self.score_of_player.click, self.list_of_balls)
@@ -52,22 +46,29 @@ class GameWithBalls:
     def start(self):
         self.time_of_beginning = time.perf_counter()
         self.fill_with_random()
+        self.fill_with_square()
 
     def fill_with_random(self):
-        while len(self.list_of_balls) < number_of_balls:
+        while len(self.list_of_balls) < number_of_balls - 1:
             self.list_of_balls.append(Ball(self.root, self.our_canv,
                                            rnd(100, 700), rnd(100, 500), rnd(30, 50), choice(colors)))
         self.root.after(100, self.fill_with_random)
 
+    def fill_with_square(self):
+        self.list_of_balls.append(MalevichSquare(self.root, self.our_canv,
+                                                 rnd(100, 700), rnd(100, 500), rnd(30, 50), choice(colors)))
+        self.root.after(10000, self.fill_with_square)
+
     def on_closing(self):
         f = open('Score.txt', 'a')
-        f.write(str(self.score_of_player.sum_points) + " " + str(self.score_of_player.sum_faults)
-                + "\n" + str(self.time_of_beginning) + " " + str(time.perf_counter()) + "\n")
+        f.write(str(self.score_of_player.sum_points) + " " + "\n" + str(self.time_of_beginning)
+                + "\n" + str(time.perf_counter()) + "\n")
         f.close()
-        self.root.destroy()
+
+        self.root.protocol('WM_DELETE_WINDOW', self.root.destroy)
 
 
-game = GameWithBalls(root, canvas)
+game = GameWithBalls(root, canvas)  # main part, creation of the game, ask information about player
 
 root_names = Toplevel(root)
 
@@ -90,22 +91,23 @@ def on_closing_name(event):
     game.start()
 
 
-def remember_names_of_players(event):
+def remember_names_of_players(event):  # writes names of player
     f = open('Score.txt', 'a')
     f.write(table_name.get() + "\n")
     f.close()
 
 
-def if_yes(event):
+def if_yes(event):  # binds wishing of end of the game and closing of the game
     remember_names_of_players(event)
     on_closing_name(event)
+    root.protocol('WM_DELETE_WINDOW', game.on_closing)
 
 
 button_yes.bind('<Button-1>', if_yes)
 button_no.bind('<Button-1>', on_closing_name)
 
 
-class Ball:
+class Ball:  # creates ball, gets and trasform all information about it and it's moving
     def __init__(self, root_ball, canvas_ball, x, y, r, color):
         self.r = r
         self.color = color
@@ -145,6 +147,16 @@ class Ball:
 
     def kill_the_ball(self):
         self.canvas.delete(self.shape)
+
+
+class MalevichSquare(Ball):  # creates square the image of the ball,
+    # so in some ways it's really "ball", for exm in list_of_balls
+    def __init__(self, root_ball, canvas_ball, x, y, r, color):
+        super().__init__(root_ball, canvas_ball, x, y, r, color)
+        self.canvas.delete(self.shape)
+        self.shape = self.canvas.create_rectangle(x - r, y - r, x + r, y + r, fill="black", width=0)
+        self.v_x = 3 * rnd(-5, 5)
+        self.v_y = 3 * rnd(-5, 5)
 
 
 root.mainloop()
