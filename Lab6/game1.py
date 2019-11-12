@@ -107,7 +107,7 @@ button_yes.bind('<Button-1>', if_yes)
 button_no.bind('<Button-1>', on_closing_name)
 
 
-class Ball:  # creates ball, gets and trasform all information about it and it's moving
+class Ball:  # creates ball, gets and modifies all information about it and it's moving
     def __init__(self, root_ball, canvas_ball, x, y, r, color):
         self.r = r
         self.color = color
