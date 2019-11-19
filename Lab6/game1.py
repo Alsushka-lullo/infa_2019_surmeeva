@@ -1,6 +1,7 @@
 import time
-from random import randrange as rnd, choice
+from random import choice
 from tkinter import Tk, Canvas, BOTH, Toplevel, E, Button, Label, Entry, W
+import rnd as rnd
 
 width_of_canvas = 800  # creates window of the game
 height_of_canvas = 600

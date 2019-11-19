@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter
 import operator
 
 list_of_names = []  # this part gets and modifies information from the file
@@ -14,12 +14,12 @@ for i in range(0, len(list_of_names), 4):
     # name-score in time
 sorted_dict_of_scores = sorted(dict_of_scores.items(), key=operator.itemgetter(1))  # sorts this dictionary by value
 
-root = Tk()
+root = tkinter.Tk()
 
-Label(text="Name of player").grid(row=0, column=0, padx=0, pady=10)  # creation of the table with scores and names
-Label(text="Points in second").grid(row=0, column=1, padx=10, pady=10)
+tkinter.Label(text="Name of player").grid(row=0, column=0, padx=0, pady=10)  # creates the table with scores and names
+tkinter.Label(text="Points in second").grid(row=0, column=1, padx=10, pady=10)
 for j in range(len(sorted_dict_of_scores)):
-    Label(text=sorted_dict_of_scores[j][0]).grid(row=j + 1, column=0, padx=10, pady=10)
-    Label(text=sorted_dict_of_scores[j][1]).grid(row=j + 1, column=1, padx=10, pady=10)
+    tkinter.Label(text=sorted_dict_of_scores[j][0]).grid(row=j + 1, column=0, padx=10, pady=10)
+    tkinter.Label(text=sorted_dict_of_scores[j][1]).grid(row=j + 1, column=1, padx=10, pady=10)
 
 root.mainloop()
