@@ -93,14 +93,14 @@ class Ball:
 
 
 class Gun:
-    def __init__(self, canvas):
+    def __init__(self, canvas, x1, y1, x2, y2):
         self.f2_power = 10  # начальная мощность, если я правильно поняла
         self.f2_on = False  # говорит, стрелять или нет???
         self.an = 1
-        self.x1 = 20
-        self.y1 = 450
-        self.x2 = 50
-        self.y2 = 420
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
         self.canv = canvas
         self.id = self.canv.create_line(self.x1, self.y1, self.x2, self.y2,
                                         width=7)
@@ -179,18 +179,22 @@ class Target:
 t1 = Target(root, canv, rnd(600, 780), rnd(300, 550), rnd(2, 50), 'red')
 t1.live = 1
 screen1 = canv.create_text(400, 300, text='', font='28')
-g1 = Gun(canv)
+g1 = Gun(canv, 20, 450, 50, 420)
 bullet = 0
 balls = []
-
+g2 = Gun(canv, 750, 450, 720, 420)
 
 def new_game(event=''):
-    global g1, t1, screen1, balls, bullet
+    global g1, g2, t1, screen1, balls, bullet
     bullet = 0
     balls = []
     canv.bind('<Button-1>', g1.fire2_start)
     canv.bind('<ButtonRelease-1>', g1.fire2_end)
     canv.bind('<Motion>', g1.targetting)
+
+    canv.bind('<Button-1>', g2.fire2_start)
+    canv.bind('<ButtonRelease-1>', g2.fire2_end)
+    canv.bind('<Motion>', g2.targetting)
 
     time_recovery = 0.03
     t1.live = 1

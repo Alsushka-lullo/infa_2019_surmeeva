@@ -1,18 +1,17 @@
-prime_numbers = [2]
-
-
-def add_number(list_chan):
+def find_prime_numbers():
+    prime_numbers = [2]
     for i in range(2, 1000):
-        temp = 0
-        for k in list_chan:
+        complexity = True
+        for k in prime_numbers:
             if i % k == 0:
                 break
-            else:
-                temp += 1
-        if temp == len(list_chan):
-            list_chan.append(i)
+            if k * k > i:
+                complexity = False
+                break
+        if not complexity:
+            prime_numbers.append(i)
 
-    return(list_chan)
+    return prime_numbers
 
 
-print(add_number(prime_numbers))
+print(find_prime_numbers())
