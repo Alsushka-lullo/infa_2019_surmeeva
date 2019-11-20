@@ -2,14 +2,16 @@ list1 = [1, 5, 6, 3, 66, 2, 6, 2, 2]
 
 
 def selection_sort(list_tm):
-    minimum_ind = 0
     for i in range(len(list_tm)):
+        minimum = list_tm[i]
+        index_of_minimum = i
         for k in range(i, len(list_tm)):
-            if list_tm[k] == min(list_tm[i:]):
-                minimum_ind = k
-                break
-        list_tm[i], list_tm[minimum_ind] = list_tm[minimum_ind], list_tm[i]
-    return(list1)
+            if list_tm[k] <= minimum:
+                minimum = list_tm[k]
+                index_of_minimum = k
+        list_tm[i], list_tm[index_of_minimum] = list_tm[index_of_minimum], list_tm[i]
+
+    return list_tm
 
 
 print(selection_sort(list1))
