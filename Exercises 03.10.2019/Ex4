@@ -3,10 +3,12 @@ dct_products = {'apple': 5, 'banana': 4, 'orange': 6,
 money = 40
 
 
-def possibility(dct_shop, pay):
-    for key in dct_products:
+def available_products(dct_shop, pay):
+    cheep_products = []
+    for key in dct_shop:
         if dct_shop[key] <= pay:
-            print(key)
+            cheep_products.append(key)
+    return cheep_products
 
 
-possibility(dct_products, money)
+print(available_products(dct_products, money))
