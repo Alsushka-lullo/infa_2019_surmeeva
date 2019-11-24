@@ -1,18 +1,17 @@
 from math import cos, sin, pi
 
 our_square = [(2, 4), (2, 2), (4, 2), (4, 4)]
-phi = pi/4
+phi = pi / 4
 
 
 def rotate_square(square, angle):
     new_square = []
-    for i in range(len(square)):
-        for j in range(8):
-            if j % 2 == 0:
-                new_square.append(square[i][0] * cos(angle) + square[i][1] * sin(angle))
-            else:
-                new_square.append(- square[i][0] * sin(angle) + square[i][1] * cos(angle))
-
+    center_x = (square[2][0] + square[0][0]) / 2
+    center_y = (square[1][1] - square[3][1]) / 2
+    for i in range(4):
+        new_square_x = (square[i][0] - center_x) * cos(angle) - sin(angle) * (square[i][1] - center_y) + center_x
+        new_square_y= (square[i][0] - center_x) * sin(angle) + cos(angle) * (square[i][1] - center_y) + center_y
+        new_square.append((new_square_x, new_square_y))
     print(new_square)
 
 
